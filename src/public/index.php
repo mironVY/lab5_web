@@ -1,7 +1,7 @@
 <?php
-include_once 'dbController.php';
-$database = new dbController();
-$database->connect();
+include_once 'DataBaseController.php';
+$database = new dataBaseController();
+$database->DataBaseConnection();
 $database->createTable();
 ?>
 
@@ -18,7 +18,8 @@ $database->createTable();
 </form>
 
 <?php
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']))
+{
     $database->addAdvert($_POST['titles'], $_POST['name'], $_POST['description'], $_POST['email']);
 }
 ?>
@@ -32,7 +33,8 @@ if (isset($_POST['submit'])) {
     </tr>
     <?php
     $result = $database->getAdverts();
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc())
+    {
         ?>
         <tr>
             <td><?php echo $row['titles']; ?></td>

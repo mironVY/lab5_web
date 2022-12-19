@@ -1,18 +1,19 @@
 <?php
 
-class dbController
+class dataBaseController
 {
     private mysqli $db;
-
-    public function connect()
+    public function DataBaseConnection()
     {
-        try {
+        try
+        {
             $this->db = new mysqli('db', 'root', 'test123', 'web');
-        } catch (Exception $e) {
+        }
+        catch (Exception $e)
+        {
             echo 'Error connecting to database';
         }
     }
-
     public function createTable()
     {
         $sql = "CREATE TABLE IF NOT EXISTS adverts(
@@ -24,7 +25,6 @@ class dbController
         )";
         $this->db->query($sql);
     }
-
     public function addAdvert($titles, $name, $desc, $email)
     {
         $sql = "INSERT INTO adverts(titles, name, description, email) VALUES(
@@ -35,11 +35,10 @@ class dbController
         )";
         $this->db->query($sql);
     }
-
     public function getAdverts()
     {
         $sql = "SELECT * FROM adverts";
-        $result = $this->db->query($sql);
-        return $result;
+        $mysqli_result = $this->db->query($sql);
+        return $mysqli_result;
     }
 }
